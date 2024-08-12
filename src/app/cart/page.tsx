@@ -1,9 +1,85 @@
-import React from 'react'
+import React from "react";
+import Image from "next/image";
 
 function CartPage() {
   return (
-    <div>CartPage</div>
-  )
+    <div className=" h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col text-red-500">
+      <div
+        className="h-1/2  p-4 flex flex-col justify-center overflow-scroll
+       "
+      >
+        <div className="flex items-center justify-between mb-4">
+          <Image
+            src="/temporary/p1.png"
+            alt={""}
+            width={100}
+            height={100}
+            mb-4
+          />
+
+          <div className="">
+            <h1 className="uppercase text-xl font-bold">Sicilian</h1>
+            <span>Large</span>
+          </div>
+          <h2 className="font-bold">$79.9</h2>
+          <span className="cursor-pointer">X</span>
+        </div>
+        <div className="flex items-center justify-between mb-4">
+          <Image
+            src="/temporary/p1.png"
+            alt={""}
+            width={100}
+            height={100}
+            mb-4
+          />
+
+          <div className="">
+            <h1 className="uppercase text-xl font-bold">Sicilian</h1>
+            <span>Large</span>
+          </div>
+          <h2 className="font-bold">$79.9</h2>
+          <span className="cursor-pointer">X</span>
+        </div>
+        <div className="flex items-center justify-between mb-4">
+          <Image
+            src="/temporary/p1.png"
+            alt={""}
+            width={100}
+            height={100}
+            mb-4
+          />
+
+          <div className="">
+            <h1 className="uppercase text-xl font-bold">Sicilian</h1>
+            <span>Large</span>
+          </div>
+          <h2 className="font-bold">$79.9</h2>
+          <span className="cursor-pointer">X</span>
+        </div>
+      </div>
+      <div
+        className="h-1/2 p-4
+       bg-fuchsia-50 flex flex-col gap-4 justify-center"
+      >
+        <div className="flex justify-between">
+          <span className="">Subtotal(3items)</span>
+          <span className="">$81.70</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="">Service Costs</span>
+          <span className="">$0.00</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="">Delivery Cost</span>
+          <span className="text-green-700">FREE</span>
+        </div>
+        <hr className="" />
+        <button className="uppercase bg-red-500 text-white p-3 rounded-md w-1/2">
+          Checkout
+        </button>
+      </div>
+    </div>
+  );
 }
 
-export default CartPage
+export default CartPage;
