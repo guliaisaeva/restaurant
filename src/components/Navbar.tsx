@@ -3,6 +3,7 @@ import Menu from "./Menu";
 import Link from "next/link";
 import Image from "next/image";
 import CartIcon from "./CartIcon";
+import UserLinks from "./UserLinks";
 
 function Navbar() {
   const user = false;
@@ -29,12 +30,8 @@ function Navbar() {
           <Image src="/images/phone.png" alt={""} width={20} height={20} />
           <span>123 43 456 66</span>
         </div>
-        {!user ? (
-          <Link href="/login">Login</Link>
-        ) : (
-          <Link href="/menu">Orders</Link>
-        )}
 
+        <UserLinks />
         <CartIcon />
       </div>
     </div>
