@@ -10,7 +10,7 @@ const Price = ({ product }: { product: ProductType }) => {
   useEffect(() => {
     if (product?.options?.length) {
       setTotal(
-        quantity * product.price + product.options[selected].additionalPrice
+        quantity * product?.price + product?.options[selected]?.additionalPrice
       );
     }
   }, [quantity, selected, product]);
@@ -22,7 +22,7 @@ const Price = ({ product }: { product: ProductType }) => {
         {product?.options?.length &&
           product?.options?.map((option, index) => (
             <button
-              key={option?.title}
+              key={option.title}
               className="min-w-[6rem] p-2 ring-1 ring-red-400 rounded-md"
               style={{
                 background: selected === index ? "rgb(248 113 113)" : "white",
