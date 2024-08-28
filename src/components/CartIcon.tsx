@@ -5,7 +5,14 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 
 function CartIcon() {
+
   const { totalItems } = useCartStore();
+
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, [])
+
+
   useEffect(() => {
     useCartStore.persist.rehydrate();
   }, []);
@@ -15,9 +22,8 @@ function CartIcon() {
       <div className="relative w-8 h-8 md:h-5 md:w-5 ">
         <Image src="/images/cart.png" alt={""} fill />
       </div>
-      <span>Cart({totalItems})</span>
+      <span>Cart ({totalItems})</span>{" "}
     </Link>
   );
 }
-
 export default CartIcon;
