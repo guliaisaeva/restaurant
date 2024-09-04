@@ -34,12 +34,12 @@ export const DELETE = async (
   const session = await getAuthSession();
   if (session?.user.isAdmin) {
     try {
-      const product = await prisma.product.delete({
+      await prisma.product.delete({
         where: {
           id: id,
         },
       });
-      return new NextResponse("Products has been deleted", {
+      return new NextResponse("Products has been deleted!", {
         status: 200,
       });
     } catch (error) {
@@ -49,7 +49,7 @@ export const DELETE = async (
       );
     }
   }
-  return new NextResponse(JSON.stringify({ message: "You are not allowed" }), {
-    status: 500,
+  return new NextResponse(JSON.stringify({ message: "You are not allowed!" }), {
+    status: 403,
   });
 };
