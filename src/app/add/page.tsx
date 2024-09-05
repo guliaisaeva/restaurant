@@ -26,6 +26,7 @@ function AddPage() {
     additionalPrice: 0,
   });
   const [options, setOptions] = useState<Option[]>([]);
+  const [file, setFile] = useState<File>();
 
   const router = useRouter();
   if (status === "loading") {
@@ -48,14 +49,35 @@ function AddPage() {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
+  const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    const item = (target.files as FileList)[0];
+    setFile(item);
+  };
 
+  const upload = async () => {
+    const data = new FormData();
+    data.append("file", file!);
+    data.append("upload_preset", "restaurant");
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dyhjhbwej/image",
+      {
+        method: "POST",
+        headers: { "Content-Type": "multipart/form-data" },
+        body: data,
+      }
+    );
+    const resData = await res.json();
+    return resData.url;
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
+      const url = await upload();
       const res = await fetch("http://localhost:3000/api/products", {
         method: "POST",
-        body: JSON.stringify({ ...inputs, options }),
+        body: JSON.stringify({ img: url, ...inputs, options }),
       });
 
       const data = await res.json();
@@ -65,6 +87,7 @@ function AddPage() {
       console.log(error);
     }
   };
+
   return (
     <div>
       <form
@@ -72,6 +95,14 @@ function AddPage() {
         onSubmit={handleSubmit}
       >
         <h1>Add New Product</h1>
+        <div className="w-full flex flex-col gap-2">
+          <label htmlFor="image">Image</label>
+          <input
+            className="ring-1 ring-red-200 rounded-sm"
+            type="file"
+            onChange={handleChangeImg}
+          />
+        </div>
         <div className="w-full flex flex-col gap-2">
           <label htmlFor="title">Title</label>
           <input
@@ -88,6 +119,7 @@ function AddPage() {
             className="ring-1 ring-red-200 rounded-sm"
             name="desc"
             id="desc"
+            onChange={handleChange}
           />
         </div>
         <div className="w-full flex flex-col gap-2">
