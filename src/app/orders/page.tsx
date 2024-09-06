@@ -75,13 +75,13 @@ function OrdersPage() {
               className={`${item.status !== "delivered" && "bg-red-50"}`}
               key={item.id}
             >
-              <th className="hidden md:block py-6 px-1">{item.id}</th>
+              <th className="hidden md:block py-6 px-1">{item?.id}</th>
               <th className="py-6 px-1">
                 {item.createdAt.toString().slice(0, 10)}
               </th>
-              <th className="py-6 px-1">{item.price}</th>
+              <th className="py-6 px-1">{item?.price}</th>
               <th className="hidden md:block py-6 px-1">
-                {item.products[0].title}{" "}
+                {item.products[0]?.title}{" "}
               </th>
               {session?.user.isAdmin ? (
                 <td>
